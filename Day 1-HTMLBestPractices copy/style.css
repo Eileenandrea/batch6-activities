@@ -1,0 +1,87 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: inherit;
+  }
+
+  
+body{
+    background-image: url('../images/BG.jpg');
+
+
+}
+
+#bestpractice1{
+    display: block;
+    margin-top: 100px;
+}
+
+#logo{
+    width: 150px;
+}
+
+div{
+    margin-top: auto;
+    display: flex;
+    justify-content: space-between;
+}
+
+.Title{
+    font-size: 24px;
+    font-family: cursive;
+    color: beige;
+}
+.div2{
+    height: 800px;
+     background:#7f7f7f;
+    background:rgba(255,255,255,0.5);
+    position: relative;
+    justify-content: center;
+    
+}
+
+.div3{
+    margin-top: 90px;
+    height: 300px;
+    width: 1000px;
+    display: flex;
+    justify-content: space-evenly;
+}
+.L{
+    flex-direction: column;
+    align-self: center;
+}
+.R{
+    flex-direction: column;
+    align-self: center;
+}
+.div4{
+    position: fixed;
+    margin-top: 450px;
+}
+
+.div5{
+    position: fixed;
+    margin-top: 500px;
+    margin-left: 400px;
+    margin-right: 400px;
+    font-size: 20px;
+    font-style: italic;
+}
+
+.div6{
+    width: 200px;
+    height: 50px;
+    background-color: rgb(42, 44, 165);
+    position: fixed;
+    margin-top: 650px;
+    border: black;
+    justify-content: center;
+    border-radius: 10px;
+}
+
+a{
+    margin: auto;
+    color: cornsilk;
+    font-size: 20px;
+}

@@ -44,6 +44,8 @@ p{
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
+    width: 100%;
+    height: auto;
   }
   .active {
     background-color: #717171;
@@ -83,6 +85,8 @@ p{
   position: relative;
   text-align: center;
   color: white;
+  width: 100%;
+  height: auto;
 }
 .header-text-main {
   font-weight: 700;

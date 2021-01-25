@@ -6,11 +6,40 @@
     <title>Document</title>
 <style>
     @import url(https://fonts.googleapis.com/css2?family=Cutive&display=swap);
+@import url(https://fonts.googleapis.com/css2?family=Alex+Brush&display=swap);
+
+    
 
 html{
     height:100%;
 }
+h2{
+    font-size: 60px;
+    font-weight: 800;
+    font-family: 'Alex Brush', handwriting;
+    color: white;
 
+
+}
+@-webkit-keyframes changecolor {
+    0% {
+        color: rgb(255, 0, 0);
+    }
+    25% {
+        color: rgb(81, 255, 0);
+    }
+    50% {
+        color: rgb(0, 38, 255);
+    }
+    100% {
+        color: rgb(255, 255, 255);
+    }
+    
+}
+#anim{   
+ -webkit-animation: changecolor 1s infinite alternate;
+font-weight: 1000;
+}
 body{
     background-image: url('./images/background.jpg');
     position: relative;
@@ -68,7 +97,7 @@ button{
     <header><h1 id="title">Avion School Survey from</h1>
         <p id="description">thank you for taking time to help us improve the platform</p>
         </header>
-        <main><img src="./images/ThankYou (2).gif">
+        <main><h2 id='anim'>" Thank you "</h2>
         <a href="./index.html"><button>back to survey-form</button></a>
         </main>
     <footer>

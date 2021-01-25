@@ -42,7 +42,15 @@ fieldset{
     color: #f1f1f1;  
 
 }
-
+input:focus{
+    background-color: rgba(152, 255, 67, 0.5);
+}
+select:focus{
+    background-color: rgba(152, 255, 67, 0.5);
+}
+textarea:focus{
+    background-color: rgba(152, 255, 67, 0.5);
+}
 div{
     margin-bottom: 0.5rem;
 }
@@ -59,8 +67,8 @@ div{
         width: 100%;
     }
     #comments{
-        width: 250px;
-        height: 150px;
+        width: 200px;
+        height: 75px;
     }
 }
 

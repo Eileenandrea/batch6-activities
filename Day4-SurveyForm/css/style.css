@@ -1,17 +1,20 @@
 @import url(https://fonts.googleapis.com/css2?family=Cutive&display=swap);
-
+html{
+    height: 100%;
+}
 
 body{
+    height: 100%;
     background-image: url('../images/background.jpg');
     position: relative;
-    top: -30px;
+    margin-top: 0px;
     margin-left: 0px;
     margin-right: 0px;
     background-attachment: fixed;
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;letter-spacing: ;
-    
+   
 
 }
 header{
@@ -67,8 +70,8 @@ div{
         width: 100%;
     }
     #comments{
-        width: 200px;
-        height: 75px;
+        width: 250px;
+        height: 150px;
     }
 }
 
@@ -76,3 +79,4 @@ div{
     display: flex;
     justify-content: center;
 }
+footer{margin-bottom: 0px;}

@@ -6,7 +6,7 @@ body {
 
 
 body{
-    background-image: url('/images/background.jpg');
+    background-image: url('./images/background.jpg');
     position: relative;
     top: -30px;
     margin-left: 0px;

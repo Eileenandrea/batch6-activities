@@ -1,0 +1,47 @@
+html{
+    height: 100%;
+}
+body{
+    height: 100%;
+    background-color: cadetblue;
+}
+.container{
+    position: relative;
+    margin: auto;
+    top: 20%;
+    background-color: rgb(255, 255, 255);
+    width: 32vw;
+    height: 32vw;
+}
+.column{
+    position: relative;
+    display: flex;
+    width: 32vw;
+    height: 4vw;
+    flex-direction: row;
+
+}
+.end{
+    justify-content: flex-end;
+}
+.start{
+    justify-content: flex-end;
+}
+.black{
+    background-color: black;
+}
+.white{
+    background-color: rgb(216, 213, 213);
+}
+.row{
+    width: 4vw;
+    height: 4vw;
+    background-color: rgb(15, 15, 15);
+ 
+}
+.left{
+    margin-left: 4vw;
+}
+.right{
+    margin-right: 4vw;
+}

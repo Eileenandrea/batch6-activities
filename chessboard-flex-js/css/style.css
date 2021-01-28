@@ -1,3 +1,8 @@
+@import url(https://fonts.googleapis.com/css2?family=Caveat+Brush&display=swap);
+
+body {
+  font-family: 'Caveat Brush', handwriting;
+}
 html{
     height: 100%;
 }
@@ -5,7 +10,8 @@ body{
     height: 100%;
     margin: 0px;
     background-repeat: no-repeat;
-  background: linear-gradient(rgba(131, 63, 0, 0.5), rgba(100, 39, 3, 0.5)), url('../images/abstract-surface-wood-texture-background.jpg');
+  background: linear-gradient(rgba(99, 87, 76, 0.295), rgba(136, 53, 5, 0.418)), url('../images/chess.jpg');
+  background-size: cover;;
   background-position: center top;
 }
 .container{

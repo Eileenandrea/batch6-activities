@@ -20,8 +20,8 @@ const black={
     pawn:'♟︎',
 }
 function theme(n) {
-    const themedark = ['#803E04', '#ccc', '#0A85AE'];
-    const themelight = ['#FFCE9E', '#fff',  '#fff'];
+    const themedark = ['#803E04', "#7a7a7a", '#0A85AE'];
+    const themelight = ['#FFCE9E', 'rgb(247, 247, 247)',  '#fff'];
     const border = ['#391C08', '#353535','#023850']
     //document.querySelectorAll('.black').style.backgroundColor = 'brown';
     let allBlack = document.querySelectorAll('.black');

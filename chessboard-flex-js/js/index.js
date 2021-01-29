@@ -2,6 +2,7 @@
 let column = [];
 let row = [];
 let container = document.querySelector('.container')
+var myAudio = new Audio('../images/wooden-object-place.wav')
 const whites = {
     king: '♔',
     queen: '♕',
@@ -112,4 +113,54 @@ function defaultPosition() {
         }
     }
 }
+let selEl = []
+let pick;
+function printID(e) {
 
+    e = e || window.event;
+    e = e.target || e.srcElement;
+    let el = document.getElementById(e.id)
+    let selELarr = []
+    if (el != null) {
+        let sel = el.innerHTML;
+        if (sel.length != 0) {
+            pick = sel;
+            selEl.push(e.id);
+            console.log(selEl);
+        
+            if (typeof selEl[1] == "undefined") {
+                document.getElementById(selEl[0]).classList.add('select')
+                selELarr = String(selEl[0]).split('-');
+                console.log(selELarr);
+            }
+            else {
+                document.getElementById(selEl[1]).classList.add('select')
+                document.getElementById(selEl[0]).classList.remove('select')
+                selEl.shift();
+            }
+/*             if( (pick == whites.pawn) || (pick == black.pawn)) { 
+                console.log('a pawn is selected');
+                selELarr[1] = Number(selELarr[1]) + 1;
+                console.log(selELarr);
+                console.log(`${selELarr[0]}-${selELarr[1]}-${selELarr[2]}`);
+                document.getElementById(`${selELarr[0]}-${selELarr[1]}-${selELarr[2]}`).classList.add('select')
+            } */
+
+        }
+        else { 
+            if (typeof pick != 'undefined') {
+                     el.innerHTML = pick;
+            document.getElementById(selEl[0]).classList.remove('select');
+            document.getElementById(selEl[0]).innerHTML = "";
+                if (pick.length != 0) {myAudio.play(); }
+            
+            pick = "";
+       
+            }      
+        }
+         
+    }
+}
+function pawmMoves() { 
+
+}

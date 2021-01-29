@@ -94,3 +94,7 @@ body{
   .active {
     background-color: #717171;
   }
+  .select{
+    box-shadow: 0 0 12px rgba(27, 228, 0, 0.7) inset;
+    border: 1px solid rgba(255,255,255,1);
+  }

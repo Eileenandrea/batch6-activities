@@ -1,17 +1,33 @@
+@import url(https://fonts.googleapis.com/css2?family=Caveat+Brush&display=swap);
+
+body {
+  font-family: 'Caveat Brush', handwriting;
+}
 html{
     height: 100%;
 }
 body{
     height: 100%;
-    background-color: cadetblue;
+    margin: 0px;
+    background-repeat: no-repeat;
+  background: linear-gradient(rgba(99, 87, 76, 0.295), rgba(136, 53, 5, 0.418)), url('../images/chess.jpg');
+  background-size: cover;;
+  background-position: center top;
 }
 .container{
     position: relative;
     margin: auto;
-    top: 20%;
-    background-color: rgb(255, 255, 255);
+    top: 5vw;
+    background-color:  #353535;
     width: 32vw;
     height: 32vw;
+    padding: 1vw;
+    box-shadow: inset -1px 1px 7px rgba(0,0,0,.2), 
+    inset 1px -1px 7px rgba(0,0,0,.2), 
+    1px 12px 5px rgba(0,0,0,.4), 
+    4px 3px 8px rgba(0,0,0,.4), 
+    5px 10px 10px rgba(0,0,0,.2), 
+    -5px 10px 10px rgba(0,0,0,.4);
 }
 .column{
     position: relative;
@@ -28,16 +44,19 @@ body{
     justify-content: flex-end;
 }
 .black{
-    background-color: black;
+    background-color:#7a7a7a;
 }
 .white{
-    background-color: rgb(216, 213, 213);
+    background-color: rgb(247, 247, 247);
 }
 .row{
     width: 4vw;
     height: 4vw;
-    background-color: rgb(15, 15, 15);
- 
+    color: rgb(0, 0, 0);
+    font-size: 3.3vw;
+    text-align: center;
+    margin: auto;
+    cursor: context-menu;   
 }
 .left{
     margin-left: 4vw;
@@ -45,3 +64,37 @@ body{
 .right{
     margin-right: 4vw;
 }
+.dot-container{
+    margin: auto;
+    position: relative;
+    display: flex;
+    width: 32vw;
+    margin-top: 7vw;
+    padding: 0.5vw;
+    border-radius: 10px;
+    background-color: rgba(255, 254, 253,0.4);
+    font-size: 2vw;
+
+}
+.dot {
+    position: relative;
+    height: 1.5vw;
+    width: 1.5vw;
+    margin: auto;
+    border-radius: 50%;
+    border:3px solid rgb(8, 5, 5);  
+    transition: background-color 0.6s ease; 
+
+}
+  
+  .dot:hover{
+    height: 2vw;
+    width: 2vw;
+  }
+  .active {
+    background-color: #717171;
+  }
+  .select{
+    box-shadow: 0 0 12px rgba(27, 228, 0, 0.7) inset;
+    border: 1px solid rgba(255,255,255,1);
+  }

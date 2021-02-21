@@ -1,4 +1,3 @@
-
 let column = [];
 let row = [];
 let container = document.querySelector('.container')
@@ -20,6 +19,7 @@ const black={
     knight: '♞',
     pawn:'♟︎',
 }
+
 function theme(n) {
     const themedark = ['#803E04', "#7a7a7a", '#0A85AE'];
     const themelight = ['#FFCE9E', 'rgb(247, 247, 247)',  '#fff'];
@@ -38,11 +38,13 @@ function theme(n) {
 }
 
 square =[]
-
+let whitePlayer = document.getElementsByClassName('white1');
+console.log(whitePlayer);
+console.log(document.querySelector('.white1'));
 let selEl = []
 let pick;
 function printID(e) {
-
+    console.log(`hello World`);
     e = e || window.event;
     e = e.target || e.srcElement;
     let el = document.getElementById(e.id)

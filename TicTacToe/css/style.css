@@ -1,0 +1,92 @@
+*{
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.outercontainer{
+    width: 580px;
+    height: 620px ;
+    margin-top: 5%;
+    display: block;
+    justify-content: center;
+    grid-row-start: 2;
+    background-color:#353535;
+    padding: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    box-shadow: inset -1px 1px 7px rgba(0,0,0,.2), 
+    inset 1px -1px 7px rgba(0,0,0,.2), 
+    1px 12px 5px rgba(0,0,0,.4), 
+    4px 3px 8px rgba(0,0,0,.4), 
+    5px 10px 10px rgba(0,0,0,.2), 
+    -5px 10px 10px rgba(0,0,0,.4);
+    position: relative;
+}
+.innercontainer{
+    display: grid;
+    grid-template-columns: repeat(3,150px);
+    grid-template-rows: repeat(3,150px);
+    justify-content: center;
+    margin: auto;
+    margin-top: 10px;
+    width: 450px;
+    background-color: rgb(233, 233, 233);
+}
+.boxes{
+    width: 150px;
+    height: 150px;
+    font-size: 120px;
+    border-width: 3px;
+    border-color: black;
+    border-style: solid;
+    text-align: center;
+    
+
+}
+.playercontainer{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    color: white;
+    
+}
+h2{
+    color: white;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.player.active{
+    background-color: yellowgreen;
+    padding: 1px;
+}
+
+.button-container{
+    display: grid;
+    grid-template-columns: repeat(3,150px);
+    justify-items: center;
+    width: 450px;
+    margin: auto;
+    margin-top: 20px;
+}
+
+.btn{
+    padding: 5px;
+    font-size: 20px;
+    width: 100px;
+    border-radius: 10px;
+}
+img{
+    text-shadow: 1px 1px 2px rgb(255, 255, 255), 0 0 25px blue, 0 0 5px darkblue;
+    margin-left: 6px;
+}
+.hidden{
+    display: none;
+}
+h3{
+    text-align: center;
+}
+.reset:hover{
+    filter: saturate(50%);
+    color: white;
+}

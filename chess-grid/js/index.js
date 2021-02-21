@@ -66,7 +66,7 @@ function addelement() {
     }
 }
 square =[]
-defaultPosition();
+//defaultPosition();
 
 function defaultPosition() { 
     for (let i = 0; i < 8; i++) { 
@@ -120,236 +120,54 @@ function defaultPosition() {
 }
 let selEl = []
 let pick;
-let selELarr1 = []
-let selELarr2 = []
-let selELarr3 = []
-let selELarr4 = []
-let selELarr5 = []
-let selELarr6 = []
-let selELarr7 = []
-let selELarr8 = []
-let selELarr1k=new Array(8).fill(0).map(() => new Array(2).fill(0));
+let selELarr1k = new Array(8).fill(0).map(() => new Array(2).fill(0));
 let blackEaten;//storage for eaten black peices
 let whiteEaten;//storage for eaten white peices
 let blackEatenEL = []//storage for eaten black peices
 let whiteEatenEL = []//storage for eaten white peices
-
 let whitePlayer = document.querySelector('.white1')
 let BlackPlayer = document.querySelector('.black1')
 whitePlayer.classList.toggle('active')
+let selELarr = [];
 
+checked();
 function printID(e) {
     e = e || window.event;
     e = e.target || e.srcElement;
     console.log(e);
     let el = document.getElementById(e.id);
-    let selELarr = [];
+
     let n;
     let n1;
     let canmove;
-    console.log(el);
-    console.log(e.id);
     let activePlayer;
     let pick1;
     if (el != null) {
         let sel = el.innerHTML;
-        console.log(sel);
         pick1 = sel;
         let CP = element => element === pick1;
         activePlayer = document.querySelector('.active').id;
-        console.log(activePlayer);
         //check if pick chess peice is black or white
         if (activePlayer == 'whiteP') {
             canmove = whiteP.some(CP);
         } else { 
             canmove = blackP.some(CP);
         }
-       // if (canmove) {
             if ((sel.length != 0) && (canmove)) {
                 pick = sel;
                 selEl.push(e.id);
-
-                console.log(selEl);
                 if (typeof selEl[1] == "undefined") {
                     document.getElementById(selEl[0]).classList.add('select')
                     selELarr = String(selEl[0]).split('-');
-                    console.log(selELarr);
-
-                    if (pick == black.pawn) {
-                        if (Number(selELarr[1]) == 1) {
-                            n = 2;
-                        }
-                        else {
-                            n = 1;
-                        }
-                        moveVerticalPlus(n, selELarr)
-                    }
-                    else if (pick == whites.pawn) {
-                        if (Number(selELarr[1]) == 6) {
-                            n = 2;
-                        }
-                        else {
-                            n = 1;
-                        }
-                        moveVerticalMinus(n, selELarr)
-                    }
-                    if (pick == black.rook) {
-                        n = 7 - Number(selELarr[1]);
-                        moveVerticalPlus(n, selELarr)
-                    }
-                    else if (pick == whites.rook) {
-                        moveVerticalMinus(Number(selELarr[1]), selELarr)
-
-                    }
-                    else if (pick == black.bishop) {
-                        n = 7 - Number(selELarr[1]);
-                        n1 = 7 - Number(selELarr[2]);
-                        let m = Number(selELarr[1]);
-                        let m1 = Number(selELarr[2]);
-                        console.log(Number(selELarr[1]));
-                    
-                        moveDiagonal1(n,n1,selELarr);
-                        moveDiagonal2(n,m1, selELarr);
-                        moveDiagonal3(m, n1, selELarr);
-                        moveDiagonal4(m,m1,selELarr);
-                    
-                    }
-                    else if (pick == whites.bishop) {
-                        n = 7 - Number(selELarr[1]);
-                        n1 = 7 - Number(selELarr[2]);
-                        let m = Number(selELarr[1]);
-                        let m1 = Number(selELarr[2]);
-                    
-                        moveDiagonal1(n,n1,selELarr);
-                        moveDiagonal2(n,m1, selELarr);
-                        moveDiagonal3(m,n1, selELarr);
-                        moveDiagonal4(m,m1,selELarr);
-                    }
-                    else if (pick == black.knight) {
-                        horsemove(selELarr)
-                    }
-                    else if (pick == whites.knight) { 
-                        horsemove(selELarr)
-                    }
+                    chessmoves();
                 }
                 else {
                     removeSel();
                     document.getElementById(selEl[1]).classList.add('select')
                     selELarr = String(selEl[1]).split('-');
-                    if (pick == black.pawn) {
-                        if (Number(selELarr[1]) == 1) {
-                            n = 2;
-                        }
-                        else {
-                            n = 1;
-                        }
-                        moveVerticalPlus(n, selELarr)
-                    }
-                    else if (pick == whites.pawn) {
-                        if (Number(selELarr[1]) == 6) {
-                            n = 2;
-                        }
-                        else {
-                            n = 1;
-                        }
-                        moveVerticalMinus(n, selELarr)
-                    }
-                    else if (pick == black.rook) {
-                        n = 7 - Number(selELarr[1]);
-                        n1 = 7 - Number(selELarr[2]);
-                        let m = Number(selELarr[1]);
-                        let m1 = Number(selELarr[2]);
-                        console.log(Number(selELarr[1]));
-                    
-                        moveVerticalPlus(n, selELarr);
-                        moveVerticalMinus(m, selELarr)
-                        moveSideRight(n1, selELarr)
-                        moveSideLeft(m1, selELarr)
-                    
-                    }
-                    else if (pick == whites.rook) {
-                        n = 7 - Number(selELarr[1]);
-                        n1 = 7 - Number(selELarr[2]);
-                        let m = Number(selELarr[1]);
-                        let m1 = Number(selELarr[2]);
-                        moveVerticalMinus(m, selELarr);
-                        moveVerticalPlus(n, selELarr);
-                        moveSideRight(n1, selELarr)
-                        moveSideLeft(m1, selELarr)
-                    }
-                    else if (pick == black.bishop) {
-                        n = 7 - Number(selELarr[1]);
-                        n1 = 7 - Number(selELarr[2]);
-                        let m = Number(selELarr[1]);
-                        let m1 = Number(selELarr[2]);
-                        console.log(Number(selELarr[1]));
-                    
-                        moveDiagonal1(n,n1,selELarr);
-                        moveDiagonal2(n,m1, selELarr);
-                        moveDiagonal3(m, n1, selELarr);
-                        moveDiagonal4(m,m1,selELarr);
-                    
-                    }
-                    else if (pick == whites.bishop) {
-                        n = 7 - Number(selELarr[1]);
-                        n1 = 7 - Number(selELarr[2]);
-                        let m = Number(selELarr[1]);
-                        let m1 = Number(selELarr[2]);
-                    
-                        moveDiagonal1(n,n1,selELarr);
-                        moveDiagonal2(n,m1, selELarr);
-                        moveDiagonal3(m,n1, selELarr);
-                        moveDiagonal4(m,m1,selELarr);
-                    }
-                    else if (pick == black.knight) {
-                        horsemove(selELarr)
-                    }
-                    else if (pick == whites.knight) { 
-                        horsemove(selELarr)
-                    }
-                    else if (pick == black.queen) {
-                        n = 7 - Number(selELarr[1]);
-                        n1 = 7 - Number(selELarr[2]);
-                        let m = Number(selELarr[1]);
-                        let m1 = Number(selELarr[2]);
-                        console.log(Number(selELarr[1]));
-                    
-                        moveVerticalPlus(n, selELarr);
-                        moveVerticalMinus(m, selELarr)
-                        moveSideRight(n1, selELarr)
-                        moveSideLeft(m1, selELarr)
-                        moveDiagonal1(n,n1,selELarr);
-                        moveDiagonal2(n,m1, selELarr);
-                        moveDiagonal3(m, n1, selELarr);
-                        moveDiagonal4(m,m1,selELarr);
-                    
-                    }
-                    else if (pick == whites.queen) {
-                        n = 7 - Number(selELarr[1]);
-                        n1 = 7 - Number(selELarr[2]);
-                        let m = Number(selELarr[1]);
-                        let m1 = Number(selELarr[2]);
-                        moveVerticalMinus(m, selELarr);
-                        moveVerticalPlus(n, selELarr);
-                        moveSideRight(n1, selELarr)
-                        moveSideLeft(m1, selELarr);
-                        moveDiagonal1(n,n1,selELarr);
-                        moveDiagonal2(n,m1, selELarr);
-                        moveDiagonal3(m,n1, selELarr);
-                        moveDiagonal4(m,m1,selELarr);
-                    }
-
+                    chessmoves();
                     selEl.shift();
                 }
-                /*             
-                                console.log('a pawn is selected');
-                                selELarr[1] = Number(selELarr[1]) + 1;
-                                console.log(selELarr);
-                                console.log(`${selELarr[0]}-${selELalrr[1]}-${selELarr[2]}`);
-                                
-                            }  */
-         
-
             }
             else {
  //               if (typeof pick != 'undefined') {
@@ -376,8 +194,7 @@ function printID(e) {
                             }
                      
                         }
-                    }
-                     
+                    }                     
                         //console.log(redSel);
                     for (let i = 0; i < redSel.length; i++) {
                             let redSelid = redSel[i].id;
@@ -420,295 +237,364 @@ function printID(e) {
                             }
                         } 
                      
-                    removeSel();
+                removeSel();
+                checked();
                 }
             }
         //}
          
     //}
 }
-function moveVerticalPlus(n, selELarr) {
-    if (n != 0) {
-        selELarr1[1] = Number(selELarr[1])
-        for (let i = 1; i <= n; i++) {
-            selELarr1[1] = Number(selELarr1[1]) + 1;
-            let posiblemoves = document.getElementById(`${selELarr[0]}-${selELarr1[1]}-${selELarr[2]}`);
-            if (posiblemoves.innerHTML != "") { //if there is a peice on its way stop
-                console.log(pick);
-                //Check if Black or White Piece
-                console.log(posiblemoves.innerHTML);
-                console.log(blackP.find(element => element === pick));
-                let CP = element => element === pick;
-                let PM = element => element === posiblemoves.innerHTML;
-                
-                //check if pick chess peice is black or white
-                console.log(blackP.some(CP));
-                if (((blackP.some(CP)) && (blackP.some(PM))) || ((whiteP.some(CP)) && (whiteP.some(PM)))) {
-                    console.log(`same`);
-                    break;
-                }
-                else {
-                    posiblemoves.classList.add('redselect')
-                    break
-                }
-               
-            }
-            posiblemoves.classList.add('select')
+function checked() { 
+    let whitePieces = [];
+    let blackPieces = [];
+    let whitePiecesid = [];
+    let blackPiecesid = [];
+    let whitePiecesinHTML = [];
+    let blackPiecesinHTML = [];
+    let allpeices =[];
+    allbox = document.querySelectorAll('.row');
+    for (let i = 0; i < 64; i++) { 
+      
+        let CP = element => element === allbox[i].innerHTML;
+        if (whiteP.some(CP)) {
+            whitePieces.push(allbox[i]);
+            whitePiecesid.push(allbox[i].id)
+            whitePiecesinHTML.push(allbox[i.innerHTML])
         }
-    }
-}
-
-function moveVerticalMinus(n, selELarr) { 
-    if (n != 0) { 
-        selELarr2[1] = Number(selELarr[1])
-        for (let i = 1; i <= n; i++){
-        selELarr2[1] = Number(selELarr2[1]) - 1;
-            posiblemoves = document.getElementById(`${selELarr[0]}-${selELarr2[1]}-${selELarr[2]}`);
-            if (posiblemoves.innerHTML != "") { //if there is a peice on its way stop
-                console.log(pick);
-                //Check if Black or White Piece
-                console.log(posiblemoves.innerHTML);
-                console.log(blackP.find(element => element === pick));
-                let CP = element => element === pick;
-                let PM = element => element === posiblemoves.innerHTML;
-                
-                //check if pick chess peice is black or white
-                console.log(blackP.some(CP));
-                if (((blackP.some(CP)) && (blackP.some(PM))) || ((whiteP.some(CP)) && (whiteP.some(PM)))) {
-                    console.log(`same`);
-                    break;
-                }
-                else {
-                    posiblemoves.classList.add('redselect')
-                    break
-                }
-               
-            }
-        posiblemoves.classList.add('select')
+        else if (blackP.some(CP)) {
+            blackPieces.push(allbox[i])
+            blackPiecesid.push(allbox[i].id)
+            blackPiecesinHTML.push(allbox[i].innerHTML)
         }
-    }
-}
-
-function moveSideRight(n, selELarr) {
-    if (n != 0) {
-        selELarr3[2] = Number(selELarr[2])
-        for (let i = 1; i <= n; i++) {
-            selELarr3[2] = Number(selELarr3[2]) + 1;
-            let posiblemoves = document.getElementById(`${selELarr[0]}-${selELarr[1]}-${selELarr3[2]}`);
-            if (posiblemoves.innerHTML != "") { //if there is a peice on its way stop
-                console.log(pick);
-                //Check if Black or White Piece
-                console.log(posiblemoves.innerHTML);
-                console.log(blackP.find(element => element === pick));
-                let CP = element => element === pick;
-                let PM = element => element === posiblemoves.innerHTML;
-                
-                //check if pick chess peice is black or white
-                console.log(blackP.some(CP));
-                if (((blackP.some(CP)) && (blackP.some(PM))) || ((whiteP.some(CP)) && (whiteP.some(PM)))) {
-                    console.log(`same`);
-                    break;
-                }
-                else {
-                    posiblemoves.classList.add('redselect')
-                    break
-                }
-               
-            }
-            posiblemoves.classList.add('select')
-        }
-    }
-}
-function moveSideLeft(n, selELarr) { 
-    if (n != 0) { 
-        selELarr4[2] = Number(selELarr[2])
-        for (let i = 1; i <= n; i++){
-        selELarr4[2] = Number(selELarr4[2]) - 1;
-            let posiblemoves = document.getElementById(`${selELarr[0]}-${selELarr[1]}-${selELarr4[2]}`);
-            if (posiblemoves.innerHTML != "") { //if there is a peice on its way stop
-                console.log(pick);
-                //Check if Black or White Piece
-                console.log(posiblemoves.innerHTML);
-                console.log(blackP.find(element => element === pick));
-                let CP = element => element === pick;
-                let PM = element => element === posiblemoves.innerHTML;
-                
-                //check if pick chess peice is black or white
-                console.log(blackP.some(CP));
-                if (((blackP.some(CP)) && (blackP.some(PM))) || ((whiteP.some(CP)) && (whiteP.some(PM)))) {
-                    console.log(`same`);
-                    break;
-                }
-                else {
-                    posiblemoves.classList.add('redselect')
-                    break
-                }
-               
-            }
-        posiblemoves.classList.add('select')
-        }
-    }
-}
-function moveDiagonal1(l,m, selELarr) {
-    if (l >= m) {
-        n = m;
-    }
-    else {
-        n = l;
     }
     
-    if (n != 0) {
-        console.log(n);
-        selELarr5[1] = Number(selELarr[1])
-        selELarr5[2] = Number(selELarr[2])
-        for (let i = 1; i <= n; i++) {
-            selELarr5[1] = Number(selELarr5[1]) + 1;
-            selELarr5[2] = Number(selELarr5[2]) + 1;
-            let posiblemoves = document.getElementById(`${selELarr[0]}-${selELarr5[1]}-${selELarr5[2]}`);
+    console.log(whitePieces);
+    activePlayer = document.querySelector('.active').id;
+    console.log(activePlayer);
+    if (activePlayer == 'whiteP') {
+        for (let i = 0; i < blackPieces.length; i++) {
+            let cArray = String(blackPiecesid[i]).split('-')
+            console.log(`${cArray}: ${blackPiecesinHTML[i]}` );
+            if (blackPiecesinHTML[i] == black.pawn) {
+                 console.log('yes');
+                 if ((Number(cArray[1]) == 1) || (((Number(cArray[1]) == 6) && (pick == whites.pawn)))) {
+                     np = 3;
+                     console.log(np);
+                }
+                else {
+                    np = 2;
+                }
+                moveVerticalPlus(np, cArray,blackPiecesinHTML[i],'green','red')
+            }  
+        }
+        console.log(document.querySelectorAll('.green'));
+        
+    }
+}
+function chessmoves() { 
+    if ((pick == black.pawn) || (pick == whites.pawn)) {
+        if ((Number(selELarr[1]) == 1) || (((Number(selELarr[1]) == 6) && (pick == whites.pawn)))) {
+            np = 3;
+        }
+        else {
+            np = 2;
+        }
+        if (pick == black.pawn) moveVerticalPlus(np, selELarr)
+        else if (pick == whites.pawn) moveVerticalMinus(np, selELarr);
+    }
+    else if ((pick == black.rook) || (pick == whites.rook)) {
+        moveVerticalPlus(8, selELarr,pick)
+        moveVerticalMinus(8, selELarr,pick)
+        moveSideRight(8, selELarr,pick)
+        moveSideLeft(8, selELarr,pick)
+    }
+    else if ((pick == black.bishop) || (pick == whites.bishop)) {
+        moveDiagonal1(8, selELarr,pick);
+        moveDiagonal2(8, selELarr,pick);
+        moveDiagonal3(8, selELarr,pick);
+        moveDiagonal4(8, selELarr,pick);
+    }
+    else if (pick == black.knight) {
+        horsemove(selELarr,pick)
+    }
+    else if (pick == whites.knight) {
+        horsemove(selELarr,pick)
+    }
+    else if ((pick == black.queen) || (pick == whites.queen)) {
+        moveVerticalPlus(8, selELarr,pick);
+        moveVerticalMinus(8, selELarr,pick)
+        moveSideRight(8, selELarr,pick)
+        moveSideLeft(8, selELarr,pick)
+        moveDiagonal1(8, selELarr,pick);
+        moveDiagonal2(8, selELarr,pick);
+        moveDiagonal3(8, selELarr),pick;
+        moveDiagonal4(8, selELarr,pick);
+    
+    }
+    else if ((pick == black.king) || (pick == whites.king)) {
+        n = 2;
+        moveVerticalPlus(n, selELarr,pick);
+        moveVerticalMinus(n, selELarr,pick)
+        moveSideRight(n, selELarr,pick)
+        moveSideLeft(n, selELarr,pick)
+        moveDiagonal1(n, selELarr,pick);
+        moveDiagonal2(n, selELarr,pick);
+        moveDiagonal3(n, selELarr,pick);
+        moveDiagonal4(n, selELarr,pick);
+    }  
+}
+function moveVerticalPlus(n,selELarr,pick,select='select',redselect='redselect') {
+    let selELarr1 = []
+    console.log(select);
+    console.log(redselect);
+    console.log(pick);
+    if (selELarr[1] != 7) {
+        for (let i = 1; i < n; i++) {
+            selELarr1[i] = Number(selELarr[1]) + i
+            if (selELarr1[i] >= 7) {
+                break;
+            }
+        }     
+        for (let i = 1; i < selELarr1.length; i++) {
+            let posiblemoves = document.getElementById(`${selELarr[0]}-${selELarr1[i]}-${selELarr[2]}`);
             if (posiblemoves.innerHTML != "") { //if there is a peice on its way stop
-              //  console.log(pick);
                 //Check if Black or White Piece
-                //console.log(posiblemoves.innerHTML);
-                //console.log(blackP.find(element => element === pick));
                 let CP = element => element === pick;
                 let PM = element => element === posiblemoves.innerHTML;
-                
+            
                 //check if pick chess peice is black or white
-         //       console.log(blackP.some(CP));
                 if (((blackP.some(CP)) && (blackP.some(PM))) || ((whiteP.some(CP)) && (whiteP.some(PM)))) {
-            //        console.log(`same`);
                     break;
                 }
                 else {
-                    posiblemoves.classList.add('redselect')
+                    posiblemoves.classList.add(redselect)
                     break
                 }
-               
             }
-            posiblemoves.classList.add('select')
+            posiblemoves.classList.add(select)
         }
-    }
+    }     
 }
-function moveDiagonal2(l,m, selELarr) {
-    if (l >= m) {
-        n = m;
-    }
-    else {
-        n = l;
-    }
-    if (n != 0) {
-        console.log(n);
-        selELarr6[1] = Number(selELarr[1])
-        selELarr6[2] = Number(selELarr[2])
-        for (let i = 1; i <= n; i++) {
-            selELarr6[1] = Number(selELarr6[1]) + 1;
-            selELarr6[2] = Number(selELarr6[2]) - 1;
-            let posiblemoves = document.getElementById(`${selELarr[0]}-${selELarr6[1]}-${selELarr6[2]}`);
+function moveVerticalMinus(n, selELarr,pick,select='select',redselect='redselect') { 
+    let selELarr1 = []
+    console.log(n);
+    if (selELarr[1] != 0) {
+        for (let i = 1; i < n; i++) {
+            selELarr1[i] = Number(selELarr[1]) - i
+            if ((selELarr1[i] >= 7) || (selELarr1[i] <= 0)) {
+                break;
+            }
+        }
+        for (let i = 1; i < selELarr1.length; i++) {
+            let posiblemoves = document.getElementById(`${selELarr[0]}-${selELarr1[i]}-${selELarr[2]}`);
             if (posiblemoves.innerHTML != "") { //if there is a peice on its way stop
-                console.log(pick);
                 //Check if Black or White Piece
-                console.log(posiblemoves.innerHTML);
-                console.log(blackP.find(element => element === pick));
                 let CP = element => element === pick;
                 let PM = element => element === posiblemoves.innerHTML;
-                
+            
                 //check if pick chess peice is black or white
-                console.log(blackP.some(CP));
                 if (((blackP.some(CP)) && (blackP.some(PM))) || ((whiteP.some(CP)) && (whiteP.some(PM)))) {
-                    console.log(`same`);
                     break;
                 }
                 else {
-                    posiblemoves.classList.add('redselect')
+                    posiblemoves.classList.add(redselect)
                     break
                 }
-               
             }
-            posiblemoves.classList.add('select')
+            posiblemoves.classList.add(select)
         }
     }
 }
-function moveDiagonal3(l,m, selELarr) {
-    if (l >= m) {
-        n = m;
-    }
-    else {
-        n = l;
-    }
-    if (n != 0) {
-        console.log(n);
-        selELarr7[1] = Number(selELarr[1])
-        selELarr7[2] = Number(selELarr[2])
-        for (let i = 1; i <= n; i++) {
-            selELarr7[1] = Number(selELarr7[1]) - 1;
-            selELarr7[2] = Number(selELarr7[2]) + 1;
-            let posiblemoves = document.getElementById(`${selELarr[0]}-${selELarr7[1]}-${selELarr7[2]}`);
+function moveSideRight(n, selELarr,pick,select='select',redselect='redselect') {
+    let selELarr1 = []
+    if (selELarr[2] != 7) {
+        for (let i = 1; i < n; i++) {
+            selELarr1[i] = Number(selELarr[2]) + i
+            if (selELarr1[i] >= 7) {
+                break;
+            }
+        }
+           for (let i = 1; i < selELarr1.length; i++) {
+            let posiblemoves = document.getElementById(`${selELarr[0]}-${selELarr[1]}-${selELarr1[i]}`);
             if (posiblemoves.innerHTML != "") { //if there is a peice on its way stop
-                console.log(pick);
                 //Check if Black or White Piece
-                console.log(posiblemoves.innerHTML);
-                console.log(blackP.find(element => element === pick));
                 let CP = element => element === pick;
                 let PM = element => element === posiblemoves.innerHTML;
-                
+            
                 //check if pick chess peice is black or white
-                console.log(blackP.some(CP));
                 if (((blackP.some(CP)) && (blackP.some(PM))) || ((whiteP.some(CP)) && (whiteP.some(PM)))) {
-                    console.log(`same`);
                     break;
                 }
                 else {
-                    posiblemoves.classList.add('redselect')
+                    posiblemoves.classList.add(redselect)
                     break
                 }
-               
             }
-            posiblemoves.classList.add('select')
+            posiblemoves.classList.add(select)
         }
     }
 }
-function moveDiagonal4(l,m, selELarr) {
-    if (l >= m) {
-        n = m;
-    }
-    else {
-        n = l;
-    }
-    if (n != 0) {
-        console.log(n);
-        selELarr8[1] = Number(selELarr[1])
-        selELarr8[2] = Number(selELarr[2])
-        for (let i = 1; i <= n; i++) {
-            selELarr8[1] = Number(selELarr8[1]) - 1;
-            selELarr8[2] = Number(selELarr8[2]) - 1;
-            let posiblemoves = document.getElementById(`${selELarr[0]}-${selELarr8[1]}-${selELarr8[2]}`);
+function moveSideLeft(n, selELarr,pick,select='select',redselect='redselect') { 
+    let selELarr1 = []
+    console.log(n);
+    if (selELarr[2] != 0) {
+        for (let i = 1; i < n; i++) {
+            console.log(i);
+            selELarr1[i] = Number(selELarr[2]) - i
+            if ((selELarr1[i] >= 7) || (selELarr1[i] <= 0)) {
+                break;
+            }
+        }
+        console.log(selELarr1);
+        for (let i = 1; i < selELarr1.length; i++) {
+            let posiblemoves = document.getElementById(`${selELarr[0]}-${selELarr[1]}-${selELarr1[i]}`);
             if (posiblemoves.innerHTML != "") { //if there is a peice on its way stop
-                console.log(pick);
                 //Check if Black or White Piece
-                console.log(posiblemoves.innerHTML);
-                console.log(blackP.find(element => element === pick));
                 let CP = element => element === pick;
                 let PM = element => element === posiblemoves.innerHTML;
-                
+            
                 //check if pick chess peice is black or white
-                console.log(blackP.some(CP));
                 if (((blackP.some(CP)) && (blackP.some(PM))) || ((whiteP.some(CP)) && (whiteP.some(PM)))) {
-                    console.log(`same`);
                     break;
                 }
                 else {
-                    posiblemoves.classList.add('redselect')
+                    posiblemoves.classList.add(redselect)
                     break
                 }
-               
             }
-            posiblemoves.classList.add('select')
+            posiblemoves.classList.add(select)
         }
     }
 }
+function moveDiagonal1(n,selELarr,pick,select='select',redselect='redselect') {
+    let selELarr1 = []
+    let selELarr2 = [];
+    if ((selELarr[1] != 7) && (selELarr[2] != 7)){
+        for (let i = 1; i < n; i++) {
+            selELarr1[i] = Number(selELarr[1]) + i
+            selELarr2[i] = Number(selELarr[2]) + i
+            if ((selELarr1[i] >= 7) || (selELarr2[i] >= 7)) {
+                break;
+            }
+        }
 
-
-
+        for (let i = 1; i < selELarr1.length; i++) {
+            let posiblemoves = document.getElementById(`${selELarr[0]}-${selELarr1[i]}-${selELarr2[i]}`);
+            if (posiblemoves.innerHTML != "") { //if there is a peice on its way stop
+                //Check if Black or White Piece
+                let CP = element => element === pick;
+                let PM = element => element === posiblemoves.innerHTML;
+            
+                //check if pick chess peice is black or white
+                if (((blackP.some(CP)) && (blackP.some(PM))) || ((whiteP.some(CP)) && (whiteP.some(PM)))) {
+                    break;
+                }
+                else {
+                    posiblemoves.classList.add(redselect)
+                    break
+                }
+            }
+            posiblemoves.classList.add(select)
+        }
+    }
+}
+function moveDiagonal2(n, selELarr,pick,select='select',redselect='redselect') {
+    let selELarr1 = []
+    let selELarr2 = [];
+    if ((selELarr[1] != 7) && (selELarr[2] != 0)){
+        for (let i = 1; i < n; i++) {
+            selELarr1[i] = Number(selELarr[1]) + i
+            selELarr2[i] = Number(selELarr[2]) - i
+            if ((selELarr1[i] >= 7) || (selELarr2[i] <= 0)) {
+                break;
+            }
+        }
+        for (let i = 1; i < selELarr1.length; i++) {
+            let posiblemoves = document.getElementById(`${selELarr[0]}-${selELarr1[i]}-${selELarr2[i]}`);
+            if (posiblemoves.innerHTML != "") { //if there is a peice on its way stop
+                //Check if Black or White Piece
+                let CP = element => element === pick;
+                let PM = element => element === posiblemoves.innerHTML;
+            
+                //check if pick chess peice is black or white
+                if (((blackP.some(CP)) && (blackP.some(PM))) || ((whiteP.some(CP)) && (whiteP.some(PM)))) {
+                    break;
+                }
+                else {
+                    posiblemoves.classList.add(redselect)
+                    break
+                }
+            }
+            posiblemoves.classList.add(select)
+        }
+    }
+}
+function moveDiagonal3(n, selELarr,pick,select='select',redselect='redselect') {
+    let selELarr1 = []
+    let selELarr2 = [];
+    if ((selELarr[1] != 0) && (selELarr[2] != 7)){
+        for (let i = 1; i < n; i++) {
+            selELarr1[i] = Number(selELarr[1]) - i
+            selELarr2[i] = Number(selELarr[2]) + i
+            if ((selELarr1[i] <= 0) || (selELarr2[i] >= 7)) {
+                break;
+            }
+        }
+        for (let i = 1; i < selELarr1.length; i++) {
+            let posiblemoves = document.getElementById(`${selELarr[0]}-${selELarr1[i]}-${selELarr2[i]}`);
+            if (posiblemoves.innerHTML != "") { //if there is a peice on its way stop
+                //Check if Black or White Piece
+                let CP = element => element === pick;
+                let PM = element => element === posiblemoves.innerHTML;
+            
+                //check if pick chess peice is black or white
+                if (((blackP.some(CP)) && (blackP.some(PM))) || ((whiteP.some(CP)) && (whiteP.some(PM)))) {
+                    break;
+                }
+                else {
+                    posiblemoves.classList.add(redselect)
+                    break
+                }
+            }
+            posiblemoves.classList.add(select)
+        }
+    }
+}
+function moveDiagonal4(n, selELarr,pick,select='select',redselect='redselect') {
+    let selELarr1 = []
+    let selELarr2 = [];
+    if ((selELarr[1] != 0) && (selELarr[2] != 0)){
+        for (let i = 1; i < n; i++) {
+            selELarr1[i] = Number(selELarr[1]) - i
+            selELarr2[i] = Number(selELarr[2]) - i
+            if ((selELarr1[i] <= 0) || (selELarr2[i] <= 0)) {
+                break;
+            }
+        }
+        console.log(selELarr1);
+        console.log(selELarr2);
+        console.log(selELarr1.length);
+        for (let i = 1; i < selELarr1.length; i++) {
+            let posiblemoves = document.getElementById(`${selELarr[0]}-${selELarr1[i]}-${selELarr2[i]}`);
+            if (posiblemoves.innerHTML != "") { //if there is a peice on its way stop
+                //Check if Black or White Piece
+                let CP = element => element === pick;
+                let PM = element => element === posiblemoves.innerHTML;
+            
+                //check if pick chess peice is black or white
+                if (((blackP.some(CP)) && (blackP.some(PM))) || ((whiteP.some(CP)) && (whiteP.some(PM)))) {
+                    break;
+                }
+                else {
+                    posiblemoves.classList.add(redselect)
+                    break
+                }
+            }
+            posiblemoves.classList.add(select)
+        }
+    }
+}
 function removeSel() { 
     let allSel = document.querySelectorAll('.select');
     let allSelR = document.querySelectorAll('.redselect');
@@ -720,8 +606,7 @@ function removeSel() {
     }
     
 }
-
-function horsemove(selELarr) {
+function horsemove(selELarr,pick,select='select',redselect='redselect') {
     let knightMoves = [[-2, -1], [-2, 1], [-1, 2], [1, 2], [2, 1], [2, -1], [1, -2], [-1, -2]];
     let selELarrl1k2 = []
     for (let i = 0; i < 8; i++) {
@@ -761,17 +646,18 @@ function horsemove(selELarr) {
             console.log(blackP.some(CP));
             if (((blackP.some(CP)) && (blackP.some(PM))) || ((whiteP.some(CP)) && (whiteP.some(PM)))) {
                
-             posiblemoves.classList.remove('select')
+             posiblemoves.classList.remove(select)
             }
             else {
-                posiblemoves.classList.remove('select')
-                posiblemoves.classList.add('redselect')
+                posiblemoves.classList.remove(select)
+                posiblemoves.classList.add(redselect)
                 
             }
            
         }    
     }
-    
+ 
+ 
  /*        for (let i = 1; i <= n; i++) {
             selELarr4[1] = Number(selELarr4[1]) - 1;
             selELarr4[2] = Number(selELarr4[2]) - 1;

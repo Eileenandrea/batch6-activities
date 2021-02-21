@@ -115,12 +115,15 @@ function defaultPosition() {
 }
 let selEl = []
 let pick;
+let selELarr1 = []
+let selELarr2 =[]
 function printID(e) {
 
     e = e || window.event;
     e = e.target || e.srcElement;
-    let el = document.getElementById(e.id)
-    let selELarr = []
+    let el = document.getElementById(e.id);
+    let selELarr = [];
+    let n;
     if (el != null) {
         let sel = el.innerHTML;
         if (sel.length != 0) {
@@ -131,36 +134,146 @@ function printID(e) {
             if (typeof selEl[1] == "undefined") {
                 document.getElementById(selEl[0]).classList.add('select')
                 selELarr = String(selEl[0]).split('-');
+                console.log(pick);
                 console.log(selELarr);
+                if (pick == black.pawn) {
+                    if (Number(selELarr[1]) == 1) {
+                        n = 2;
+                    }
+                    else { 
+                        n = 1;
+                    }
+                    moveVerticalPlus(n, selELarr)
+                }
+                else if (pick == whites.pawn) {
+                    if (Number(selELarr[1]) == 6) {
+                        n = 2;
+                    }
+                    else { 
+                        n = 1;
+                    }
+                    moveVerticalMinus(n, selELarr)
+                }
+                if (pick == black.rook) { 
+                    console.log(Number(selELarr[1]));
+                    n = 7 - Number(selELarr[1]);
+                    moveVerticalPlus(n, selELarr)
+                }
+                else if (pick == whites.rook) { 
+                    moveVerticalMinus(Number(selELarr[1]), selELarr)
+
+                }
             }
             else {
+                removeSel();
                 document.getElementById(selEl[1]).classList.add('select')
-                document.getElementById(selEl[0]).classList.remove('select')
-                selEl.shift();
+                selELarr = String(selEl[1]).split('-');
+                console.log(selELarr);
+                if (pick == black.pawn) {
+                    if (Number(selELarr[1]) == 1) {
+                        n = 2;
+                    }
+                    else { 
+                        n = 1;
+                    }
+                    moveVerticalPlus(n, selELarr)
+                }
+                else if (pick == whites.pawn) {
+                    if (Number(selELarr[1]) == 6) {
+                        n = 2;
+                    }
+                    else { 
+                        n = 1;
+                    }
+                    moveVerticalMinus(n, selELarr)
+                }
+                if (pick == black.rook) { 
+                    console.log(Number(selELarr[1]));
+                    n = 7 - Number(selELarr[1]);
+                    console.log(Number(selELarr[1]));
+                    console.log(n);
+                    let m = Number(selELarr[1]);
+                    console.log(m);
+                    moveVerticalPlus(n, selELarr); 
+                    moveVerticalMinus(m, selELarr)
+
+                    
+                }
+                else if (pick == whites.rook) { 
+                    moveVerticalMinus(Number(selELarr[1]), selELarr)
+
+                }
+                                selEl.shift();
             }
-/*             if( (pick == whites.pawn) || (pick == black.pawn)) { 
+/*             
                 console.log('a pawn is selected');
                 selELarr[1] = Number(selELarr[1]) + 1;
                 console.log(selELarr);
-                console.log(`${selELarr[0]}-${selELarr[1]}-${selELarr[2]}`);
-                document.getElementById(`${selELarr[0]}-${selELarr[1]}-${selELarr[2]}`).classList.add('select')
-            } */
+                console.log(`${selELarr[0]}-${selELalrr[1]}-${selELarr[2]}`);
+                
+            }  */
 
         }
         else { 
             if (typeof pick != 'undefined') {
-                     el.innerHTML = pick;
-            document.getElementById(selEl[0]).classList.remove('select');
-            document.getElementById(selEl[0]).innerHTML = "";
-                if (pick.length != 0) {myAudio.play(); }
-            
-            pick = "";
-       
+                allSel = document.querySelectorAll('.select');
+                console.log(allSel);
+                console.log(pick);
+                console.log(selEl[0]);
+                for (let i = 0; i < allSel.length; i++) { 
+                    console.log(allSel[i]);
+                    console.log();
+                    let allSelid = allSel[i].id; //get ID of the selected elements
+                    if (allSelid != selEl[0]) { 
+                        console.log('okeydokey');
+                        console.log(pick);
+                        console.log(el);
+                
+                        console.log(allSel[i]); 
+                        console.log(el);
+                        if (allSel[i] == el) {
+                            console.log('yes');
+                            el.innerHTML = pick;
+                            document.getElementById(selEl[0]).classList.remove('select');
+                            document.getElementById(selEl[0]).innerHTML = "";
+                            if (pick.length != 0) {myAudio.play(); }
+                        
+                             pick = "";
+                        }
+                    }
+                }
+                console.log();
+                removeSel();
             }      
         }
          
     }
 }
-function pawmMoves() { 
+function moveVerticalPlus(n, selELarr) {
+    if (n != 0) {
+        selELarr1[1] = Number(selELarr[1])
+        for (let i = 1; i <= n; i++){
+        selELarr1[1] = Number(selELarr1[1]) + 1;
+        document.getElementById(`${selELarr[0]}-${selELarr1[1]}-${selELarr[2]}`).classList.add('select')
+        }}
+}
 
+function moveVerticalMinus(n, selELarr) { 
+    console.log(n);
+    console.log(selELarr);
+    if (n != 0) { 
+        selELarr2[1] = Number(selELarr[1])
+        for (let i = 1; i <= n; i++){
+        console.log(selELarr2[1]);
+        selELarr2[1] = Number(selELarr2[1]) - 1;
+        document.getElementById(`${selELarr[0]}-${selELarr2[1]}-${selELarr[2]}`).classList.add('select')
+        }
+    }
+}
+
+function removeSel() { 
+    let allSel = document.querySelectorAll('.select');
+    for (let a = 0; a < allSel.length; a++) { 
+        allSel[a].classList.remove('select')
+    }
 }

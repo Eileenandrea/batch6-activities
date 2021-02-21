@@ -13,7 +13,7 @@ body{
     background-attachment: fixed;
     background-repeat: no-repeat;
     background-position: center;
-    background-size: cover;letter-spacing: ;
+    background-size: cover;
    
 
 }
@@ -21,7 +21,7 @@ header{
     padding-top: 1px;
     text-align: center;
     color:	#f1f1f1;
-    background-color: rgba(85, 22, 20, 0.6);
+    background-color: rgba(39, 38, 38, 0.6);
     line-height: 1.6rem;
       font-family: 'Cutive', serif;
 }
@@ -41,18 +41,20 @@ fieldset{
     font-weight: 600;
     margin: auto;
     width: 35%;
-    background-color:rgba(20, 83, 85, 0.753); 
+    background-color:rgba(65, 63, 63, 0.753); 
     color: #f1f1f1;  
-
+    line-height: 1.5rem;
+    padding: 20px;
 }
+
 input:focus{
-    background-color: rgba(152, 255, 67, 0.5);
+    background-color: rgba(253, 255, 251, 0.5);
 }
 select:focus{
-    background-color: rgba(152, 255, 67, 0.5);
+    background-color: rgba(253, 255, 251, 0.5);
 }
 textarea:focus{
-    background-color: rgba(152, 255, 67, 0.5);
+    background-color: rgba(253, 255, 251, 0.5);
 }
 div{
     margin-bottom: 0.5rem;

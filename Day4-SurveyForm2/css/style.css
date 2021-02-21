@@ -1,0 +1,124 @@
+
+*{
+    box-sizing: border-box;
+}
+header{
+    width: 100%;
+    height: 75px;
+   background-color: brown;
+   margin-bottom: 10px;
+}
+.slideshow-container{
+    max-width: 100%;;
+    position: relative;
+    margin: auto;
+    padding: 30px;
+    background-color: rgba(161, 150, 150, 0.363);
+    vertical-align: middle;
+   
+}
+/* The dots/bullets/indicators */
+.dot {
+    height: 2vw;
+    width: 2vw;
+    margin: 0 2px;
+    background-color: rgb(8, 8, 8);
+    border-radius: 50%;
+    display: inline-block;
+    transition: background-color 0.6s ease;
+  }
+ .dot:hover{
+   background-color: cornsilk;
+ }
+
+img{
+    max-width: 60%;
+    position: relative;
+    left: 20%;
+}
+.signup-button{
+    position: absolute;
+    left: 45%;
+    bottom: 15%;
+    background-color: red;
+    color: white;
+    padding: 5px;
+    border-radius: 20px;
+    width: auto;
+    transition: 0.6s ease;
+    font-size: 3vw;
+}
+
+
+.prev, .next {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    width: auto;
+    margin-top: -22px;
+    padding: 16px;
+    color: white;
+    font-weight: bold;
+    font-size: 18px;
+    transition: 0.6s ease;
+    border-radius: 0 3px 3px 0;
+    user-select: none;
+  }
+  .next {
+    right: 30px;
+    border-radius: 3px 0 0 3px;
+  }
+  .prev:hover, .next:hover {
+    background-color: rgba(0,0,0,0.8);
+  }
+  .active, .dot:hover {
+    background-color: #717171;
+  }
+  .fade {
+    -webkit-animation-name: fade;
+    -webkit-animation-duration: 1.5s;
+    animation-name: fade;
+    animation-duration: 1.5s;
+  }
+  
+  @-webkit-keyframes fade {
+    from {opacity: .4}
+    to {opacity: 1}
+  }
+  
+  @keyframes fade {
+    from {opacity: .4}
+    to {opacity: 1}
+  }
+  
+  .container{
+      display: none;
+  }
+
+.myForms{
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    position: absolute;
+    top: 0;left: 30%;right: 0;bottom: 0;
+    margin-top: 25px;
+    width: 40%;
+    height: max-content;
+    font-size: 2vw;
+    padding:10px;
+    background-color:rgba(65, 63, 63, 0.753); 
+    color: #f1f1f1;  
+    line-height: 1.5rem;
+    padding: 30px;
+    border-radius: 30px;
+
+}
+.inputfields{
+    border-radius: 30px;
+    font-size: 2vw;
+    width: 100%;
+    display: block;  
+}
+.blur{
+    filter: blur(8px);
+}

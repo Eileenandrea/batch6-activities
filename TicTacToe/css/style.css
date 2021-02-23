@@ -2,6 +2,18 @@
     margin: 0;
     box-sizing: border-box;
 }
+html{
+    height: 100%;
+    width: 100%;    
+}
+
+body{
+    height: 100%;
+    width: 100%;
+}
+@import url(https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;800;900&display=swap);
+
+
 
 .outercontainer{
     width: 580px;
@@ -89,4 +101,75 @@ h3{
 .reset:hover{
     filter: saturate(50%);
     color: white;
+}
+.overlay{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: inherit;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.726);
+    backdrop-filter: blur(3px);
+    z-index: 5;
+}
+.text-container{
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    text-align: center;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 50px;
+}
+.overlaybtn{
+    display: grid;
+    grid-template-columns: repeat(2,250px);
+    margin-top: 50px;
+}
+.overlaybtn div{
+    background: none;
+    border: none;
+    font-size: 28px;
+    color: rgba(206, 206, 206, 0.993);
+    font-weight: 700;
+}
+.playagain:hover{
+    color: rgb(36, 252, 54);
+    cursor: pointer;
+}
+.movehistory:hover{
+    color: rgb(243, 22, 22);
+    cursor: pointer;
+}
+.overlay1{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: inherit;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.726);
+    backdrop-filter: blur(3px);
+    z-index: 5;
+}
+.overlay1btn{
+    display: grid;
+    grid-template-columns: repeat(2,250px);
+    margin-top: 50px;
+}
+.overlay1btn div{
+    background: none;
+    border: none;
+    font-size: 28px;
+    color: rgba(206, 206, 206, 0.993);
+    font-weight: 700;
+}
+
+.AI:hover{
+    color: rgb(36, 252, 54);
+    cursor: pointer;
+}
+.HUMAN:hover{
+    color: rgb(243, 22, 22);
+    cursor: pointer;
 }

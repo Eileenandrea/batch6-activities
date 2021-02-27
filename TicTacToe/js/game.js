@@ -11,6 +11,12 @@ let move1 = [[]];
 let draw;
 let winningPlayer;
 let ai;
+let tie;
+let scores = {
+    o: 10,
+    x: -10,
+    tie: 0
+};
 
 const reset = document.querySelector('.reset')
 const previousBtn = document.querySelector('.btn-previous');
@@ -105,8 +111,7 @@ function game() {
                     if (!gameover) {
                         activeplayer = player2;
                         //ai move
-                        aimoves();
-                        console.log(activeplayer);
+                        aiHard();
                         storemove();
                         checkwin();
                         activeplayer = player1;
@@ -188,6 +193,7 @@ function storemove() {
     moves.push(move1.slice())
 }
 function checkwin() {
+    let gamewin;
   //Check win horizontally  
     for (let y = 0; y < 3; y++) { 
         if ((move[y][0] != "") && (move[y][0] === move[y][1]) && (move[y][1] === move[y][2])) { 
@@ -210,15 +216,14 @@ function checkwin() {
         gameover = true;
     }
 //Check if Draw
-    if (movescount === 10) { 
+    if (movescount === 10 && !gameover) { 
         gameover = true;
         draw = true;
     }
     if (gameover) {
-        displayoverlay()
-      
-
+        displayoverlay();
     }
+    return gamewin;
 }
  
 function displayoverlay() { 
@@ -255,6 +260,121 @@ function aimoves() {
 
 }
 
-function aiHard() { 
+function aiHard() {
+    console.log(move);
+    let bestScore = -Infinity;
+    let bestmove;
+    let z =0;
+    for (let i = 0; i < 3; i++) {
+      for (let j = 0; j < 3; j++) {
+        // Is the spot available?
+        if (move[i][j] == '') {
+          move[i][j] = player2;
+          let score = minimax(move, 0, false);
+          move[i][j] = '';
+          if (score > bestScore) {
+            bestScore = score;
+            bestmove = { i, j };
+          }
+        }
+      }
+    }
+    move[bestmove.i][bestmove.j] = player2;
+    for (let y=0; y < 3; y++) { 
+        for (let x = 0; x < 3; x++) {
+           divelement[z].innerHTML = move[y][x];
+            /*        console.log(divelement[z]);
+                   console.log(move[y][x]); */
+            z++;
+        }
+    }
+}
+
+
+function minimax(board, depth, isMaximizing) {
+    let result = checkwin2();
+    if (result !== null) {
+        return scores[result];
     
+    }
+  
+    if (isMaximizing) {
+      let bestScore = -Infinity;
+      for (let i = 0; i < 3; i++) {
+        for (let j = 0; j < 3; j++) {
+          // Is the spot available?
+          if (board[i][j] == '') {
+            board[i][j] = player2;
+            let score = minimax(board, depth + 1, false);
+            board[i][j] = '';
+            if (score > bestScore) {
+                bestScore = score;
+            }
+          }
+        }
+      }
+      return bestScore;
+    } else {
+      let bestScore = Infinity;
+      for (let i = 0; i < 3; i++) {
+        for (let j = 0; j < 3; j++) {
+          // Is the spot available?
+          if (board[i][j] == '') {
+            board[i][j] = player1;
+            let score = minimax(board, depth + 1, true);
+            board[i][j] = '';
+            if (score < bestScore) {
+                bestScore = score;
+            }
+          }
+        }
+      }
+      return bestScore;
+    }
+  }
+  function checkwin2() {
+    let winner = null;
+	
+
+    // horizontal
+    for (let i = 0; i < 3; i++) {
+      if ((move[i][0] != "") && (move[i][0] === move[i][1]) && (move[i][1] === move[i][2])) {
+        winner = move[i][0];
+      }
+    }
+  
+
+    // Vertical
+    for (let i = 0; i < 3; i++) {
+      if ((move[0][i] != "") && (move[0][i] === move[1][i]) && (move[1][i] === move[2][i])) {
+        winner = move[0][i];
+      }
+    }
+  
+
+    // Diagonal
+    if ((move[0][0] === move[1][1]) && (move[1][1] === move[2][2])) {
+      winner = move[0][0];
+    }
+    if ((move[0][2] === move[1][1]) && (move[1][1] === move[2][0])) {
+      winner = move[2][0];
+    }
+  
+
+    let openSpots = 0;
+    for (let i = 0; i < 3; i++) {
+      for (let j = 0; j < 3; j++) {
+        if (move[i][j] == '') {
+          openSpots++;
+        }
+      }
+    }
+  
+
+    if (winner == null && openSpots == 0) {
+      return 'tie';
+    } else {
+      return winner;
+    }
+
 }

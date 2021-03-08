@@ -1,0 +1,99 @@
+
+@import url(https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;800;900&display=swap);
+
+body {
+  font-family: 'Montserrat', sans-serif;
+}
+.text-area{
+    text-align: center;
+    margin-bottom: 80px;
+}
+.card-area{
+    height: 500px;
+    width: 80%;
+    margin: auto;
+    position: relative;
+}
+.card-div{
+    height: 200px;
+    position: absolute;
+    top: 50%;
+    left: 5%;
+    z-index: 0;
+   
+    
+}
+.card-cover{
+    height: 200px;
+    position: absolute;
+    top: 50%;
+    left: 5%;
+    z-index: 1;
+    cursor: pointer;
+}
+.card-div:hover{
+    top: 40%;
+
+}
+.card-div2{ 
+    height: 200px;
+    position: absolute;
+}
+.card-div3{
+    height: 200px;
+    position: absolute;
+}
+.card-area2{
+    height: 300px;
+    width: 80%;
+    margin: auto;
+    position: relative;
+    text-align: center;
+}
+img{
+    height: inherit;
+    width: inherit;
+}
+.btn-area2{
+    display:flex;
+    justify-content: center;
+}
+.button-area{
+    display:flex;
+    justify-content: center;
+    position: absolute;
+    top:  70%;
+    left: 25%
+}
+.hidden{
+    display:none;
+}
+button{
+    margin: 10px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    padding: 10px;
+}
+
+h1{font-size: 42px;
+  font-family: 'Montserrat', sans-serif;
+  color: white;
+ 
+}
+body {
+	background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+	background-size: 400% 400%;
+	animation: gradient 15s ease infinite;
+}
+
+@keyframes gradient {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
+}
